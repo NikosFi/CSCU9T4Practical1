@@ -134,13 +134,29 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
             return message = "Please enter a valid time and distance";
         }
 
-        Entry e = new Entry(n, d, m, y, h, mm, s, km);
 
+
+        Entry e = new Entry(n, d, m, y, h, mm, s, km);
         myAthletes.addEntry(e);
+
+        try {
+            checkForDuplicate();
+        }catch (IllegalArgumentException exception){
+            message = "duplicate";
+            myAthletes.removeLastEntry();
+        };
+
+
 
 
 
         return message;
+    }
+
+    public void checkForDuplicate () {
+        if(myAthletes.checkKeys()){
+            throw new IllegalArgumentException();
+        }
     }
 
     public String lookupEntry() {

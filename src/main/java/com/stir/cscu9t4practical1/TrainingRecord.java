@@ -15,12 +15,25 @@ public class TrainingRecord {
     // add a record to the list
     public void addEntry(Entry e) {
         // addClass
+//        Entry a = new Entry("a",1,1,1,1,1,1,1);
+//        Entry b = new Entry("b",1,1,1,1,1,1,1);
+//        Entry c = new Entry("c",1,1,1,1,1,1,1);
+//        Entry d = new Entry("a",1,1,1,1,1,1,1);
+//        tr.add(a);
+//        tr.add(b);
+//        tr.add(c);
+//        tr.add(d);
+
 
         tr.add(e);
-        if(checkKeys()){
-            tr.remove(tr.size() - 1);
-            System.out.println("name exists");
-        }
+//        if(checkKeys()){
+//            tr.remove(tr.size() - 1);
+//            System.out.println("name exists");
+//        }
+    }
+
+    public void removeLastEntry() {
+        tr.remove(tr.size() - 1);
     }
 
 
