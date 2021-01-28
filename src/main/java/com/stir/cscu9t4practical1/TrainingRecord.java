@@ -74,7 +74,7 @@ public class TrainingRecord {
                     result = result.concat(current.getEntry());
                     // sb.append(result);
                 } else {
-                    i++;
+                    i++; // this is a counter
                 }
             }
         }
