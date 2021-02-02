@@ -26,15 +26,14 @@ public class TrainingRecord {
 
 
         tr.add(e);
-//        if(checkKeys()){
-//            tr.remove(tr.size() - 1);
-//            System.out.println("name exists");
-//        }
+
     }
 
     public void removeLastEntry() {
         tr.remove(tr.size() - 1);
     }
+
+
 
 
     public boolean checkKeys() {
@@ -48,6 +47,28 @@ public class TrainingRecord {
         } return flag;
     }
 
+    public String findAllByName(String name) {
+        ListIterator<Entry> iter = tr.listIterator();
+        int i = 0;
+        StringBuilder result = new StringBuilder();
+        for (Entry current: tr) {
+            if(iter.hasNext()) {
+                current = iter.next();
+                if(current.getName().equals(name)){
+                    result.append(current.getEntry());
+                } else {
+                    i++; // this is a counter
+                }
+            }
+        }
+
+        if (i == tr.size()) {
+            return "No entries found";
+        } else {
+            return result.toString();
+
+        }
+    }
 
     // look up the entry of a given day and month
     public String lookupEntry(int d, int m, int y) {
