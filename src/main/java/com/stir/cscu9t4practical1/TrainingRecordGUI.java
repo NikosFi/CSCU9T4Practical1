@@ -45,6 +45,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
     private JButton lookUpByDate = new JButton("Look Up");
     private JButton findAllByDate = new JButton("Find All By Date");
     private JButton findAllByName = new JButton("Find By Name");
+    private JButton remove = new JButton("Remove");
 
 
     private String[] types = {"Sprint", "Cycle", "Swim"}; //declare the three types of Entries
@@ -132,6 +133,8 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         findAllByDate.addActionListener(this);
         add(findAllByName);
         findAllByName.addActionListener(this);
+        add(remove);
+        remove.addActionListener(this);
         add(outputArea);
         outputArea.setEditable(false);
         setSize(720, 300);
@@ -157,6 +160,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         }
         if(event.getSource() == findAllByName ) {
             message = findAllByName();
+        }
+        if(event.getSource() == remove) {
+            message = removeEntry();
         }
 
         //declare switch cases for the options of the entry (event source is the type drpdown;)
@@ -297,11 +303,9 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
             return message = "Please enter a valid date";
         }
 
-
         float km;
         int h, mm, s;
         try {
-
             h = Integer.parseInt(hours.getText());
             mm = Integer.parseInt(mins.getText());
             s = Integer.parseInt(secs.getText());
@@ -351,6 +355,7 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
                 } else {
                     myAthletes.addEntry(swim);
                 }
+
                 validateSwim();
             } catch (NumberFormatException e) {
                 return message = "Please fill the fields 'Place' ";
@@ -388,10 +393,20 @@ public class TrainingRecordGUI extends JFrame implements ActionListener {
         return message;
     }
 
+    public String removeEntry() {
+        String n = name.getText();
+        int d = Integer.parseInt(day.getText());
+        int m = Integer.parseInt(month.getText());
+        int y = Integer.parseInt(year.getText());
+        outputArea.setText("deleting record ...");
+        String message = myAthletes.removeEntry(n,d, m, y);
+        return message;
+    }
+
     // Find all function
     public String findAllByDate() {
-        int m = Integer.parseInt(month.getText());
         int d = Integer.parseInt(day.getText());
+        int m = Integer.parseInt(month.getText());
         int y = Integer.parseInt(year.getText());
         outputArea.setText("looking up record ...");
         String message = myAthletes.findAllEntries(d, m, y);

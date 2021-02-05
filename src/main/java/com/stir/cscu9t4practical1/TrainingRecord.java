@@ -3,6 +3,7 @@ package com.stir.cscu9t4practical1;
 
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class TrainingRecord {
@@ -14,26 +15,18 @@ public class TrainingRecord {
 
     // add a record to the list
     public void addEntry(Entry e) {
-        // addClass
-//        Entry a = new Entry("a",1,1,1,1,1,1,1);
-//        Entry b = new Entry("b",1,1,1,1,1,1,1);
-//        Entry c = new Entry("c",1,1,1,1,1,1,1);
-//        Entry d = new Entry("a",1,1,1,1,1,1,1);
-//        tr.add(a);
-//        tr.add(b);
-//        tr.add(c);
-//        tr.add(d);
-
-
         tr.add(e);
-
     }
+
 
     public void removeLastEntry() {
         tr.remove(tr.size() - 1);
     }
 
-
+    public String removeEntry(String n, int d, int m, int y) {
+        tr.removeIf(e -> e.getName().equals(n) && e.getDay() == d && e.getMonth() == m && e.getYear() == y);
+        return n;
+    }
 
 
     public boolean checkKeys() {
@@ -61,7 +54,6 @@ public class TrainingRecord {
                 }
             }
         }
-
         if (i == tr.size()) {
             return "No entries found";
         } else {
@@ -99,7 +91,6 @@ public class TrainingRecord {
                 }
             }
         }
-
         if (i == tr.size()) {
             return "No entries found";
         } else {
